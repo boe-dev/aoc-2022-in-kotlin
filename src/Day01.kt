@@ -1,3 +1,5 @@
+import java.lang.System.lineSeparator
+
 fun main() {
     fun part1(input: List<String>) = calorieCounting(input)
 
@@ -13,15 +15,17 @@ fun main() {
 }
 
 fun calorieCounting(input: List<String>, top: Int = 1): Int {
-    val calList = mutableListOf<Int>()
-    var elfCal = 0
-    input.forEach {
-        if (it.isNotBlank()) {
-            elfCal += it.toInt()
-        } else {
-            calList.add(elfCal)
-            elfCal = 0
+
+    val data = input
+        .joinToString(lineSeparator())
+        .split(lineSeparator() + lineSeparator())
+        .map { values -> values
+            .lines()
+            .sumOf { it.toInt() }
         }
-    }
-    return calList.sorted().reversed().take(top).sum()
+
+    return data
+        .sortedDescending()
+        .take(top)
+        .sum()
 }
