@@ -58,6 +58,7 @@ fun main() {
 
 
     fun part2(input: List<String>): Int {
+        //TODO put part1 into here
         return input.size
     }
 
